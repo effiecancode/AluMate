@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ page_title }}</title>
+{% endblock %}
+
+{% block body %}
+<div style="display: flex;flex-direction: column;align-items: center;text-align: center;">
+    {% if status == "info" %}
+    <svg class="text-info" width="48" height="48"><use xlink:href="#info-circle"/></svg>
+    {% elif status == "warning" %}
+    <svg class="text-warning" width="48" height="48"><use xlink:href="#exclamation-circle"/></svg>
+    {% elif status == "success" %}
+    <svg class="text-success" width="48" height="48"><use xlink:href="#check-circle"/></svg>
+    {% elif status == "error" %}
+    <svg class="text-danger" width="48" height="48"><use xlink:href="#x-circle"/></svg>
+    {% else %}
+    {% endif %}
+    <h2>{{ message_title }}</h2>
+
+    <p>{{ message_content }}</p>
+</div>
+{% endblock %}

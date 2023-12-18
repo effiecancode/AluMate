@@ -1,0 +1,43 @@
+User Model
+----------
+first name
+middle name -- optional
+last name
+email
+password
+phone number
+PF -- optional
+scholar code --optional
+
+
+
+Event model
+-----------
+organised_by
+event_name
+event_venue
+event_date
+event_time
+event_invitees(group --- relationship)
+description
+
+Hub model
+-----------
+hub_name
+description
+
+
+Chapter model
+-----------
+name
+university/institution
+description
+
+
+opportunity model
+------------------
+posted_by
+posted_on
+application_deadline
+department
+description

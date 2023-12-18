@@ -1,0 +1,14 @@
+{% autoescape off %}
+
+Hi {{ receiver_name }}
+
+You are receiving this email since you have created an account on {{ app_name }}.
+To activate your account confirm your email address by clicking on the link below:
+
+{% if confirmation_url_override != None %}
+    {{ confirmation_url_override }}
+{% else %}
+    http://{{ domain }}/users/confirm-email/?uidb64={{uidb64}}&token={{token}}
+{% endif %}
+
+{% endautoescape %}

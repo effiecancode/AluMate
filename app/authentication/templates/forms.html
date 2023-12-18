@@ -1,0 +1,64 @@
+<!-- {% load widget_tweaks %}  -->
+{% block style %}
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  li {
+    text-align: left;
+  }
+</style>
+{% endblock %}
+
+<form
+  class="row"
+  action="{{ action_url }}"
+  method="post"
+  style="max-width: 600px"
+>
+  {% csrf_token %} {% if form.non_field_errors %} {% for error in
+  form.non_field_errors %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{error}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %} {% for field in form %}
+  <div class="form-group">
+    {% for error in field.errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{error}}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %} {{ field.label_tag }} {% render_field field class="form-control
+    mb-2" %} {% if field.help_text %}
+    <p class="text-muted">{{ field.help_text }}</p>
+    {% endif %}
+  </div>
+  {% endfor %}
+  <div class="d-flex justify-content-center">
+    <button
+      type="submit"
+      class="w-100 btn btn-outline-primary rounded-0 d-flex align-items-center justify-content-center"
+      style="width: 100%; margin-top: 10px"
+    >
+      <p class="ms-2 m-0">SUBMIT</p>
+    </button>
+  </div>
+</form>

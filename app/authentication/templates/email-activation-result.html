@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Email confirmation</title>
+{% endblock %}
+
+{% block body %}
+<div style="display: flex;flex-direction: column;align-items: center;text-align: center;">
+    {% if confirmed %}
+
+    <svg class="text-success" width="48" height="48"><use xlink:href="#check-circle"/></svg>
+
+    <h1>Email confirmed successfully!</h1>
+    <p>Thank you for activating your account. You can now a log in to your account.</p>
+
+    {% else %}
+    <svg class="text-danger" width="48" height="48"><use xlink:href="#x-circle"/></svg>
+    <h2>Email confirmation failed!</h2>
+
+    <p>
+        {% if is_active == False %}
+        Sorry, unable to confirm your email address. It could be that the confirmation link has already been used or the link has expired.
+        {% else %}
+        Sorry, unable to confirm your email address. It seems that the confirmation link has already been used.
+        {% endif %}
+    </p>
+    <p>
+        {% if is_active == False %}
+        <a href="{% url 'resend_confirmation_email' uidb64 %}"> Click here to resend confirmation email</a>
+        {% endif %}
+    </p>
+
+    {% endif %}
+</div>
+{% endblock %}
